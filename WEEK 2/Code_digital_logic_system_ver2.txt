@@ -1,0 +1,166 @@
+const int segA = 7;
+const int segB = 8;
+const int segC = 2;
+const int segD = 3;
+const int segE = 4;
+const int segF = 5;
+const int segG = 6;
+const int RESET = 9;
+const int START = 10;
+int STARTBUT = 0;
+int RESETBUT = 0;
+int lastSTARTBUT = LOW;
+int lastRESETBUT = LOW;
+int count = 0;
+
+//0= ABCDEF
+//1= BC
+//2= ABGED
+//3=ABCDG
+//4=BCFG
+//5=AFGCD
+//6=AFGEDC
+//7=ABC
+//8=ABCDEFG
+//9=ABCFG
+
+void setup() 
+{
+  pinMode(segA, OUTPUT);
+  pinMode(segB, OUTPUT);
+  pinMode(segC, OUTPUT);
+  pinMode(segD, OUTPUT);
+  pinMode(segE, OUTPUT);
+  pinMode(segF, OUTPUT);
+  pinMode(segG, OUTPUT);
+  pinMode(RESET, INPUT);
+  pinMode(START, INPUT);
+  Serial.begin(9600);
+}
+void loop() 
+{
+  STARTBUT = digitalRead(START);
+  RESETBUT = digitalRead(RESET);
+  if(STARTBUT == HIGH && lastSTARTBUT == LOW)
+  {
+    count++;
+    if(count>9)
+    {
+      count = 0;
+    }
+    Serial.print("COUNT=");
+    Serial.println(count);
+  }
+  if(RESETBUT == HIGH && lastRESETBUT == LOW)
+  {
+    count = 0;
+    Serial.print("COUNT=");
+    Serial.println(count);
+  }
+  delay(250);
+  lastSTARTBUT = STARTBUT;
+  lastRESETBUT = RESETBUT;
+
+  switch(count)
+  {
+    case 0:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,HIGH);
+    digitalWrite(segE,HIGH);
+    digitalWrite(segF,HIGH);
+    digitalWrite(segG,LOW);
+    break;
+
+    case 1:
+    digitalWrite(segA,LOW);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,LOW);
+    digitalWrite(segE,LOW);
+    digitalWrite(segF,LOW);
+    digitalWrite(segG,LOW);
+    break;
+
+    case 2:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,LOW);
+    digitalWrite(segD,HIGH);
+    digitalWrite(segE,HIGH);
+    digitalWrite(segF,LOW);
+    digitalWrite(segG,HIGH);
+    break;
+
+    case 3:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,HIGH);
+    digitalWrite(segE,LOW);
+    digitalWrite(segF,LOW);
+    digitalWrite(segG,HIGH);
+    break;
+
+    case 4:
+    digitalWrite(segA,LOW);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,LOW);
+    digitalWrite(segE,LOW);
+    digitalWrite(segF,HIGH);
+    digitalWrite(segG,HIGH);
+    break;
+
+    case 5:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,LOW);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,HIGH);
+    digitalWrite(segE,LOW);
+    digitalWrite(segF,HIGH);
+    digitalWrite(segG,HIGH);
+    break;
+
+    case 6:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,LOW);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,HIGH);
+    digitalWrite(segE,HIGH);
+    digitalWrite(segF,HIGH);
+    digitalWrite(segG,HIGH);
+    break;
+
+    case 7:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,LOW);
+    digitalWrite(segE,LOW);
+    digitalWrite(segF,LOW);
+    digitalWrite(segG,LOW);
+    break;
+
+    case 8:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,HIGH);
+    digitalWrite(segE,HIGH);
+    digitalWrite(segF,HIGH);
+    digitalWrite(segG,HIGH);
+    break;
+
+    case 9:
+    digitalWrite(segA,HIGH);
+    digitalWrite(segB,HIGH);
+    digitalWrite(segC,HIGH);
+    digitalWrite(segD,HIGH);
+    digitalWrite(segE,LOW);
+    digitalWrite(segF,HIGH);
+    digitalWrite(segG,HIGH);
+    break;
+  }
+}
