@@ -1,0 +1,22 @@
+const int LEDPIN = 9;
+char command;
+void setup() 
+{
+  pinMode(LEDPIN,OUTPUT);
+  Serial.begin(9600);
+}
+void loop() 
+{
+  int potValue = analogRead(A0);
+  command = Serial.read();
+  Serial.println(potValue);
+  if(command == 'f')
+  {
+    digitalWrite(LEDPIN,HIGH);
+  }
+  else if(command == 's')
+  {
+    digitalWrite(LEDPIN,LOW);
+  }
+  delay(1000);
+}

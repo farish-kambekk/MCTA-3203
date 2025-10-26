@@ -1,0 +1,48 @@
+#include <Servo.h>
+Servo myservo;
+const int potpin = A0;
+const int LEDPIN = 7;
+const int servoPin = 9;
+int potValue = 0;
+int angle = 0;
+char command;
+void setup() 
+{
+  pinMode(LEDPIN, OUTPUT);
+  myservo.attach(servoPin);
+  myservo.write(angle);
+  delay(2000);
+  Serial.begin(9600);
+}
+
+void loop() 
+{
+  if(Serial.available()>0)
+  {
+    command = Serial.read(); //get info from python
+    if(command == 'f') //if python return 'f'
+    {
+      potValue = analogRead(potpin);
+      angle = map(potValue,0,1023,0,180);
+      myservo.write(angle);
+      Serial.print(potValue); //send potentiometer to python
+      Serial.print(","); 
+      Serial.println(angle);//send angle to python in new line
+      if(potValue>339)
+      {
+        digitalWrite(LEDPIN,HIGH);
+      }
+      else
+      {
+        digitalWrite(LEDPIN,LOW);
+      }
+      delay(100);
+    }
+    else if (command == 's') //if python return 's'
+    {
+      while(true) //endless looping until arduino reset
+      {
+      }
+    }
+  }
+}
