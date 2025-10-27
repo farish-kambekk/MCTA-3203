@@ -22,6 +22,7 @@ try: #used to ignore error and execute command
                 print(f"Potentiometer: {potValue}  |  Servo Position: {angle}") #print into 2 separate data
                 
                 ax.clear() #clear the plot
+                ax.plot(x_value,y_value) #plot
                 plt.title("Potentiometer Reading")
                 plt.xlabel("Integer")
                 plt.ylabel("Potentiometer Value") 
@@ -33,4 +34,5 @@ except KeyboardInterrupt: #this function will happen if 'Ctrl + c" is pressed
     ser.close()
     plt.ioff()
     plt.show()
+
     print("Serial connection closed.")
