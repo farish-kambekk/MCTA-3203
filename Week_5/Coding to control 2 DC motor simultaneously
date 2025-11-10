@@ -1,0 +1,23 @@
+const int ENA = 10; // Control speed of motor A
+const int ENB = 11; // Control speed of motor B
+const int INA = 12; // Control direction of motor A
+const int INB = 13; // Contorl direction of motor B
+
+
+
+void setup() 
+{
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(ENB, OUTPUT);
+}
+
+void loop() 
+{
+  analogWrite(ENA, 64);  
+  digitalWrite(IN1, HIGH);
+  analogWrite(ENB, 64);  
+  digitalWrite(IN2, LOW);
+  delay(1000);
+}
