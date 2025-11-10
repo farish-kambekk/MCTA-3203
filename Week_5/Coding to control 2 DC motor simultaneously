@@ -21,7 +21,7 @@ void loop()
   delay(5000);
   Motor('C', 'B', 255);
   delay(5000);
-  Motor('C', 'B', 0);
+  Motor('C', 'B', 0); //soft stoping both motor simultaneously
   delay(5000);
 }
 
