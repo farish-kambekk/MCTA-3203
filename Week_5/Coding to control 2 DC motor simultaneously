@@ -21,6 +21,8 @@ void loop()
   delay(5000);
   Motor('C', 'B', 255);
   delay(5000);
+  Motor('C', 'B', 0);
+  delay(5000);
 }
 
 void Motor(char mot, char direction, int speed)
@@ -36,7 +38,7 @@ void Motor(char mot, char direction, int speed)
     {
       digitalWrite(INA, LOW);
     }
-    analogWrite(ENA, 255);
+    analogWrite(ENA, speed);
     break;
 
     case 'B':
@@ -48,7 +50,7 @@ void Motor(char mot, char direction, int speed)
     {
       digitalWrite(INB, LOW);
     }
-    analogWrite(ENB, 255);
+    analogWrite(ENB, speed);
     break;
 
     case 'C':
@@ -62,8 +64,8 @@ void Motor(char mot, char direction, int speed)
       digitalWrite(INA, LOW);
       digitalWrite(INB, LOW);
     }
-    analogWrite(ENA, 255);
-    analogWrite(ENB, 255);
+    analogWrite(ENA, speed);
+    analogWrite(ENB, speed);
     break;
   }
 }
