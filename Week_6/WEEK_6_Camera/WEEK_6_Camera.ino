@@ -151,7 +151,7 @@ void loop() {
     }
   }
   //For servo detection
-  /*if(facedetect1 == true && count == 0)
+  if(facedetect1 == true && count == 0)
   {
     if(detectedFaceX > 180)
     {
@@ -163,6 +163,6 @@ void loop() {
       myservo1.write(detectedFaceX);
       myservo2.write(detectedFaceY);
     }
-  }*/
+  }
   delay(1000);
 }
